@@ -18,14 +18,14 @@
     <div class="row">
       <div class="col-6">
         <h3>Create an account:</h3>
-        <form>
+        <form id="registration">
           <div class="form-group">
             <label for="name">Enter your name:</label>
             <input type="text" id="name" placeholder="First Last">
           </div>
           <div class="form-group">
             <label for="depost">Initial deposit amount:</label>
-            <input type="number" id="initial-deposit" min="0" placeholder="0.00">
+            <input type="number" step=".01" id="initial-deposit" min="0" placeholder="0.00">
           </div>
           <button type="submit" class="btn btn-success">Submit</button>
         </form>
@@ -35,19 +35,19 @@
         <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#deposit-collapse">Deposit</button>
         <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#withdrawal-collapse">Withdrawal</button>
           <div class="collapse" id="deposit-collapse">
-            <form>
+            <form id="deposit-form">
               <div class="form-group">
                 <label for="name">Deposit Amount:</label>
-                <input type="number" id="deposit-amount" min="0" placeholder="0.00">
+                <input type="number" step=".01" id="deposit-amount" min="0" placeholder="0.00">
               </div>
               <button class="btn btn-success" type="submit" id="complete-deposit">Complete Deposit</button>
             </form>
           </div>
           <div class="collapse" id="withdrawal-collapse">
-            <form>
+            <form id="withdraw-form">
               <div class="form-group">
                 <label for="name">Withdrawal Amount:</label>
-                <input type="number" id="withdrawal" min="0" placeholder="0.00">
+                <input type="number" step=".01" id="withdrawal" min="0" placeholder="0.00">
                 <button class="btn btn-success" type="submit" id="complete-withdrawal">Complete Withdrawal</button>
               </div>
             </form>
