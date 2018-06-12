@@ -31,8 +31,18 @@ function clearFields() {
   $("#submit-button").attr("disabled", false);
 }
 
+function returnIndex(array, name) {
+  for (i=0; i < array.length; i++) {
+    if (name === array[i].getName()) {
+      return i;
+    }
+  }
+}
+
 $(document).ready(function() {
   var accountArray = [];
+  var name = "";
+  var returnIndex(
 
   $("#registration").submit(function(event) {
     event.preventDefault();
@@ -47,7 +57,8 @@ $(document).ready(function() {
     var account = new BankAccount(name, initialAmount);
     accountArray.push(account);
     $("#userName").text(accountArray[0].getName());
-    $("#current-balance").text("Your balance is $" + accountArray[name].getBalance().toFixed(2));
+    $("#current-balance").text("Your balance is $" + accountArray[0].getBalance().toFixed(2));
+    $("#current-accounts").append("<li>" + accountArray[0].getName() + "</li>");
     $("#submit-button").attr("disabled", true);
   });
 
