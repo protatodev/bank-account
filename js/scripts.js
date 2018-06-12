@@ -42,13 +42,15 @@ function clearFields() {
   $("#current-balance").text("");
   $("#home-collapse").hide();
   $("#submit-button").attr("disabled", false);
+  $("#loginButton").attr("disabled", false);
+  $("#registerButton").attr("disabled", false);
+  $("#submit-button").attr("disabled", false);
+  $("#login-button").attr("disabled", false);
 }
 
 function returnIndex(array, name) {
   for (i=0; i < array.length; i++) {
-    if (name === array[i].getName()) {
-      return i;
-    }
+    if (name === array[i].getName()) return i;
   }
 }
 
@@ -84,6 +86,10 @@ $(document).ready(function() {
     $("#current-balance").text("Your balance is $" + accountArray[accountArray.length - 1].getBalance().toFixed(2));
     $("#current-accounts").append(accountArray[accountArray.length - 1].getName() + "</br>");
     $(".balance").show();
+    $("#loginButton").attr("disabled", true);
+    $("#registerButton").attr("disabled", true);
+    $("#submit-button").attr("disabled", true);
+
   });
 
   $("#depositButton").click(function() {
@@ -107,9 +113,7 @@ $(document).ready(function() {
   $("#withdraw-form").submit(function(event) {
     event.preventDefault();
     var withdrawalAmount = parseFloat($("#withdrawal").val());
-    if (isNaN(withdrawalAmount)) {
-      return;
-    }
+    if (isNaN(withdrawalAmount)) return;
     accountArray[arrIndex].withdraw(withdrawalAmount);
     $("#current-balance").text("Your balance is $" + accountArray[arrIndex].getBalance().toFixed(2));
   });
@@ -133,6 +137,9 @@ $(document).ready(function() {
     } else {
       $("#wrong-password").text("Incorrect username or password");
     }
+    $("#loginButton").attr("disabled", true);
+    $("#registerButton").attr("disabled", true)
+    $("#login-button").attr("disabled", true);
 
   });
 
