@@ -27,6 +27,15 @@ BankAccount.prototype.getPassword = function() {
   return this.password;
 }
 
+function hideAll() {
+  $("#register").hide();
+  $("#login").hide();
+  $("#homeDiv").hide();
+  $("#depositDiv").hide();
+  $("#withdrawDiv").hide();
+  $(".balance").hide();
+}
+
 function clearFields() {
   $("#name").val("");
   $("#initial-deposit").val("");
@@ -46,6 +55,17 @@ function returnIndex(array, name) {
 $(document).ready(function() {
   var accountArray = [];
   var arrIndex = 0;
+  hideAll();
+
+  $("#registerButton").click(function() {
+    $("#register").toggle();
+    $("#login").hide();
+  });
+
+  $("#loginButton").click(function() {
+    $("#login").toggle();
+    $("#register").hide();
+  });
 
   $("#registration").submit(function(event) {
     event.preventDefault();
@@ -57,13 +77,24 @@ $(document).ready(function() {
       return;
     }
 
-    $("#home-collapse").hide().fadeIn(1500);
+    $("#homeDiv").hide().fadeIn(1500);
     var account = new BankAccount(name, initialAmount, password);
     accountArray.push(account);
-    $("#userName").text(accountArray[arrIndex].getName());
-    $("#current-balance").text("Your balance is $" + accountArray[arrIndex].getBalance().toFixed(2));
+    $("#userName").text(accountArray[accountArray.length - 1].getName());
+    $("#current-balance").text("Your balance is $" + accountArray[accountArray.length - 1].getBalance().toFixed(2));
     $("#current-accounts").append(accountArray[accountArray.length - 1].getName() + "</br>");
+    $(".balance").show();
   });
+
+  $("#depositButton").click(function() {
+    $("#depositDiv").toggle();
+    $("#withdrawDiv").hide();
+  })
+
+  $("#withdrawButton").click(function() {
+    $("#withdrawDiv").toggle();
+    $("#depositDiv").hide();
+  })
 
 
   $("#deposit-form").submit(function(event) {
@@ -85,6 +116,7 @@ $(document).ready(function() {
 
   $("#sign-out").click(function(){
     clearFields();
+    hideAll();
   });
 
   $("#login").submit(function(event) {
@@ -93,7 +125,10 @@ $(document).ready(function() {
     arrIndex = returnIndex(accountArray, name);
     var enteredPassword = $("#password").val();
     if (enteredPassword === accountArray[arrIndex].getPassword()) {
-      $("#home-collapse").show();
+      $("#userName").text(accountArray[arrIndex].getName());
+      $("#homeDiv").show();
+      $(".balance").show();
+      $("#current-balance").text("Your balance is $" + accountArray[arrIndex].getBalance().toFixed(2));
       $("#wrong-password").text("");
     } else {
       $("#wrong-password").text("Incorrect username or password");
