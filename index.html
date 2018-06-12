@@ -21,8 +21,8 @@
     <div class="row">
       <div class="col-12">
         <h4>Welcome to The National Bank of Thelly Maximiliano. Please click one of the buttons below to either login to your existing account, or create a new account.</h4>
-        <button class="btn btn-dark" type="button" id="createAccount" data-target="#register-collapse" data-toggle="collapse">Register</button>
-        <button class="btn btn-info" type="button" id="login" data-target="#login-collapse" data-toggle="collapse">Login</button>
+        <button class="btn btn-dark" type="button" data-target="#register-collapse" data-toggle="collapse">Register</button>
+        <button class="btn btn-info" type="button" data-target="#login-collapse" data-toggle="collapse">Login</button>
       </div>
     </div>
     <div class="row">
@@ -30,14 +30,18 @@
         <h3>Create an account:</h3>
         <form id="registration">
           <div class="form-group">
-            <label for="name">Enter your name:</label>
+            <label for="name">Create a username:</label>
             <input class="form-control" type="text" id="name" required>
+          </div>
+          <div class="form-group">
+            <label for="create-password">Create a password:</label>
+            <input class="form-control" type="password" id="create-password" required>
           </div>
           <div class="form-group">
             <label for="initial-deposit">Initial deposit amount:</label>
             <input class="form-control" type="number" step=".01" id="initial-deposit" min="0" placeholder="0.00" required>
           </div>
-          <button id="submit-button" type="submit" data-target="#home-collapse" data-toggle="collapse" class="btn btn-success">Create Account</button>
+          <button id="submit-button" type="submit" data-target="#register-collapse" data-toggle="collapse" class="btn btn-success">Create Account</button>
         </form>
       </div>
       <div class="col-6 collapse" id="login-collapse">
@@ -50,8 +54,9 @@
           <div class="form-group">
             <label for="password">Password:</label>
             <input class="form-control" type="password" id="password" required>
+            <p><span id="wrong-password"></span></p>
           </div>
-          <button id="submit-button" type="submit" data-target="#home-collapse" data-toggle="collapse" class="btn btn-success">Sign In</button>
+          <button id="login-button" type="submit" data-target="#login-collapse" data-toggle="collapse" class="btn btn-success">Sign In</button>
         </form>
       </div>
       <div class="col-6 collapse" id="home-collapse">
@@ -62,17 +67,17 @@
           <form id="deposit-form">
             <div class="form-group">
               <label for="name">Deposit Amount:</label>
-              <input class="form-control" type="number" step=".01" id="deposit-amount" min="0" placeholder="0.00">
+              <input class="form-control" type="number" step=".01" id="deposit-amount" min="0">
             </div>
-            <button class="btn btn-success" type="submit" id="complete-deposit">Complete Deposit</button>
+            <button class="btn btn-success" type="submit" data-toggle="collapse" data-target="#deposit-collapse">Complete Deposit</button>
           </form>
         </div>
         <div class="collapse" id="withdrawal-collapse">
           <form id="withdraw-form">
             <div class="form-group">
               <label for="name">Withdrawal Amount:</label>
-              <input class="form-control" type="number" step=".01" id="withdrawal" min="0" placeholder="0.00">
-              <button class="btn btn-success" type="submit" id="complete-withdrawal">Complete Withdrawal</button>
+              <input class="form-control" type="number" step=".01" id="withdrawal" min="0">
+              <button class="btn btn-success" type="submit" data-toggle="collapse" data-target="#withdrawal-collapse">Complete Withdrawal</button>
             </div>
           </form>
         </div>
@@ -88,9 +93,8 @@
       </div>
       <div class="col-6">
         <div class="balance">
-          <h4>Current Accouhts</h4>
-          <ul id="current-accounts">
-          </ul>
+          <h4>Current Accounts</h4>
+          <p id="current-accounts"></p>
         </div>
       </div>
     </div>
