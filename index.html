@@ -7,7 +7,9 @@
   integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
   crossorigin="anonymous">
   <link href="css/styles.css" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
   <script src="js/scripts.js"></script>
 </head>
 <body>
@@ -25,22 +27,31 @@
             <label for="depost">Initial deposit amount:</label>
             <input type="number" id="initial-deposit" min="0" placeholder="0.00">
           </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-success">Submit</button>
         </form>
       </div>
       <div class="col-6">
-        <h3>Despoits and Withdrawals:</h3>
-        <form>
-          <div class="form-group">
-            <label for="name">Deposit Amount:</label>
-            <input type="number" id="deposit-amount" min="0" placeholder="0.00">
+        <h3>What would you like to do?</h3>
+        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#deposit-collapse">Deposit</button>
+        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#withdrawal-collapse">Withdrawal</button>
+          <div class="collapse" id="deposit-collapse">
+            <form>
+              <div class="form-group">
+                <label for="name">Deposit Amount:</label>
+                <input type="number" id="deposit-amount" min="0" placeholder="0.00">
+              </div>
+              <button class="btn btn-success" type="submit" id="complete-deposit">Complete Deposit</button>
+            </form>
           </div>
-          <div class="form-group">
-            <label for="depost">Withdrawal amount:</label>
-            <input type="number" id="withdrawal" min="0" placeholder="0.00">
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+          <div class="collapse" id="withdrawal-collapse">
+            <form>
+              <div class="form-group">
+                <label for="name">Withdrawal Amount:</label>
+                <input type="number" id="withdrawal" min="0" placeholder="0.00">
+                <button class="btn btn-success" type="submit" id="complete-withdrawal">Complete Withdrawal</button>
+              </div>
+            </form>
+        </div>
       </div>
     </div>
     <div>
