@@ -3,6 +3,7 @@ function BankAccount(name, initialAmount) {
   this.name = name;
   this.initialAmount = initialAmount;
   this.balance = initialAmount;
+  this.password = "";
   // return this
 }
 
@@ -18,6 +19,18 @@ BankAccount.prototype.getBalance = function() {
   return this.balance;
 }
 
+BankAccount.prototype.getName = function() {
+  return this.name;
+}
+
+function clearFields() {
+  $("#name").val("");
+  $("#initial-deposit").val("");
+  $("#current-balance").text("");
+  $("#home-collapse").hide();
+  $("#submit-button").attr("disabled", false);
+}
+
 $(document).ready(function() {
   var accountArray = [];
 
@@ -25,10 +38,17 @@ $(document).ready(function() {
     event.preventDefault();
     var name = $("#name").val();
     var initialAmount = parseFloat($("#initial-deposit").val());
+
+    if (name === "" || initialAmount === 0) {
+      return;
+    }
+
+    $("#home-collapse").hide().fadeIn(1500);
     var account = new BankAccount(name, initialAmount);
     accountArray.push(account);
-    $("#current-balance").text("Your balance is $" + accountArray[0].getBalance().toFixed(2));
-    console.log(accountArray[0]);
+    $("#userName").text(accountArray[0].getName());
+    $("#current-balance").text("Your balance is $" + accountArray[name].getBalance().toFixed(2));
+    $("#submit-button").attr("disabled", true);
   });
 
 
@@ -46,9 +66,9 @@ $(document).ready(function() {
     $("#current-balance").text("Your balance is $" + accountArray[0].getBalance().toFixed(2));
   });
 
-
-
-
+  $("#sign-out").click(function(){
+    clearFields();
+  });
 
 
 });
